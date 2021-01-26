@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
     counter()
     like()
     comment()
+    pause()
 })
 
 function increment(){
@@ -56,8 +57,6 @@ function comment(){
 
     form.addEventListener("submit", function(e){
         e.preventDefault();
-        
-
         let commentText = textArea.value;
         let p = document.createElement("p");
         p.innerText = commentText;
@@ -65,3 +64,28 @@ function comment(){
     })
 
 }
+
+function pause(){
+    let pause = document.getElementById("pause")
+    let interval = setInterval(increment, 1000)
+    let decrement = document.getElementById('minus')
+    let increase = document.getElementById('plus')
+    
+    pause.addEventListener("click", function(){
+        
+        if(document.querySelector('#pause').innerText == "pause") {
+        clearInterval(interval)
+        document.querySelector('#pause').innerText = "resume"
+        decrement.disabled = true;
+        increase.disabled = true;
+        heart.disabled = true;
+        submit.disabled = true;
+        } else {
+        interval = setInterval( increment, 1000);
+        document.querySelector('#pause').innerText = "pause"
+        decrement.disabled = false;
+        increase.disabled = false;
+        heart.disabled = false;
+        submit.disabled = false;
+        }
+    });}
